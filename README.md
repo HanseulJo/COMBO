@@ -33,7 +33,7 @@ All necessary directories can be configured in the file **COMBO/config.py**
 * --lamda : The regularization coefficient only valid for ['ising', 'contamination']
 * --path : A path to the directory of the experiment to be continued.(Only need when you want to resume an experiment)
 
-####. Examples
+####3. Examples
 ```bash
 python COMBO/main.py --objective ising --n_eval 150 --random_seed_config 7 --lamda 0.01
 ```
@@ -43,3 +43,17 @@ To optimize 'ising' with 0.01 for the regularization coefficient with 150 evalua
 python COMBO/main.py --objective pestcontrol --n_eval 300 --random_seed_config 3
 ```
 To optimize 'pestcontrol' with 300 evaluations
+
+## 3. Modification log (By HanseulJo)
+
+### main_NKmodel.py
+* Run this file for an experiment solving NK model optimization with COMBO.
+* Class "NKmodel" constructs an NKmodel. It initially generates a random (or you can fix an) interdependence matrix (--> self.interdependence) and a random  (or you can fix an) contribution map (--> self.contributions). You can calculate fitness value for each status (tuple of length N), whole landscape, global optimum, etc. with class methods.
+* Example run: (N, K, A 넣자)
+```bash
+python ./main_NKmodel.py --n_eval 40 --random_seed_config 1
+```
+
+### Etc.:
+* "COMBO/main.py" file has been moved outside of the folder "COMBO/". This prevents error relevant to modules.
+*
