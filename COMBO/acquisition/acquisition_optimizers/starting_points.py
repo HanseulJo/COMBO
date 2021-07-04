@@ -8,7 +8,7 @@ from COMBO.acquisition.acquisition_functions import expected_improvement
 
 
 N_RANDOM_VERTICES = 20000
-N_GREEDY_ASCENT_INIT = 20
+N_GREEDY_ASCENT_INIT = 20  # Why this should be 20?
 N_SPRAY = 10
 
 

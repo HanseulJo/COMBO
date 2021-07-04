@@ -49,7 +49,7 @@ To optimize 'pestcontrol' with 300 evaluations
 ### main_NKmodel.py
 * Run this file for an experiment solving NK model optimization with COMBO.
 * Class "NKmodel" constructs an NKmodel. It initially generates a random (or you can fix an) interdependence matrix (--> self.interdependence) and a random  (or you can fix an) contribution map (--> self.contributions). You can calculate fitness value for each status (tuple of length N), whole landscape, global optimum, etc. with class methods.
-* Example run: (N, K, A 넣자)
+* Example run: 
 ```bash
 python ./main_NKmodel.py --N 6 --K 1 --A 2 --n_eval 20 --random_seed_config 1
 ```
