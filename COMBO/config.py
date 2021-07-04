@@ -18,6 +18,8 @@ def experiment_directory():
 		return '/Users/changyongoh/Experiments/COMBO'
 	elif hostname == 'ChangYongs-MacBook-Pro.local':
 		return '/Users/changyongoh/Experiments/COMBO'
+	elif hostname == 'Hanseului-MacBook-2.local':
+		return '/Users/hanseul_jo/Desktop/Post AI/COMBO'
 	else:
 		raise ValueError('Set proper experiment directory on your machine.')
 
@@ -34,6 +36,8 @@ def data_directory():
 		return '/var/scratch/coh/Data'
 	elif hostname == 'ChangYongs-MacBook-Pro.local':
 		return '/Users/changyongoh/Data'
+	elif hostname == 'Hanseului-MacBook-2.local':
+		return '/Users/hanseul_jo/Desktop/Post AI/Data'
 	else:
 		raise ValueError('Set proper experiment directory on your machine.')
 
@@ -48,6 +52,8 @@ def SMAC_exp_dir():
 		return '/home/cyoh/Experiments/CombinatorialBO_SMAC'
 	elif hostname[:4] == 'node':
 		return '/var/scratch/coh/Experiments/CombinatorialBO_SMAC'
+	elif hostname == 'Hanseului-MacBook-2.local':
+		return '/Users/hanseul_jo/Desktop/Post AI/CombinatorialBO_SMAC'
 	else:
 		raise NotImplementedError
 
@@ -62,5 +68,7 @@ def BOCS_result_dir():
 		return '/home/cyoh/Experiments/BOCS'
 	elif hostname[:4] == 'node':
 		return '/var/scratch/coh/Experiments/BOCS'
+	elif hostname == 'Hanseului-MacBook-2.local':
+		return '/Users/hanseul_jo/Desktop/Post AI/BOCS'
 	else:
 		raise NotImplementedError
