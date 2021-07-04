@@ -1,7 +1,7 @@
 import argparse
 import numpy as np
 import torch
-import random
+import sys
 import itertools
 
 from main import COMBO
@@ -9,8 +9,8 @@ from COMBO.experiments.test_functions.experiment_configuration import sample_ini
 
 
 NKMODEL_N_STAGES = 6
-INITIAL_POINTS_N = 2  # if it is <= 1, it raises ZeroDivisionError. (왜?)
-NKMODEL_DATAPATH = "/Users/hanseul_jo/Desktop/Post AI/Exp input/Game1 landscape.txt"
+INITIAL_POINTS_N = 2  # if it is <= 1, it raises ZeroDivisionError.
+#NKMODEL_DATAPATH = "/Users/hanseul_jo/Desktop/Post AI/Exp input/Game1 landscape.txt"
 
 def _generate_random_seeds(seed_str, n_test_case_seed=5, n_init_point_seed=5, seed_num=3):
     """
@@ -143,22 +143,39 @@ class NKmodel(object):
     
     def print_info(self, path=None):
         if path is None:
-            raise NotADirectoryError
-        with open(path + "knowledge.txt", "w") as f1:
+            print("\nInterdependence Matrix:")
             for i in range(self.N):
-                f1.write("".join(["O" if b else "X" for b in self.interdependence[i]]) + "\n")
-        with open(path + "landscape.txt", "w") as f2:
+                print("".join(["X" if b else "O" for b in self.interdependence[i]]))
+            print("\nLandscape:")
             d = self.landscape_with_contributions()
             for state, (fit, ctrbs) in d.items():
                 ctrbs = [str(round(v, 4)) for v in ctrbs]
                 fit = str(round(fit, 4))
                 state = "".join([str(x) for x in state])
-                f2.write("\t".join([state] + ctrbs + [fit]) + "\n")
+                print("\t".join([state] + ctrbs + [fit]))
+            print("===")
             optlist = list(self.get_optimum_and_more(order=10).items())
             optlist.sort(key=lambda x: -x[0])
             for i in range(10):
                 opt, optstates = optlist[i]
-                f2.write(f"{i+1}-th optimum: {opt} {optstates}\n")
+                print(f"{i+1}-th optimum: {opt} {optstates}")
+        else:
+            with open(path + "knowledge.txt", "w") if path is not None else sys.stdout as f1:
+                for i in range(self.N):
+                    print("".join(["X" if b else "O" for b in self.interdependence[i]]), file=f1)
+            with open(path + "landscape.txt", "w") if path is not None else sys.stdout as f2:
+                d = self.landscape_with_contributions()
+                for state, (fit, ctrbs) in d.items():
+                    ctrbs = [str(round(v, 4)) for v in ctrbs]
+                    fit = str(round(fit, 4))
+                    state = "".join([str(x) for x in state])
+                    print("\t".join([state] + ctrbs + [fit]), file=f2)
+                print("===", file=f2)
+                optlist = list(self.get_optimum_and_more(order=10).items())
+                optlist.sort(key=lambda x: -x[0])
+                for i in range(10):
+                    opt, optstates = optlist[i]
+                    print(f"{i+1}-th optimum: {opt} {optstates}\n", file=f2)
 
 
 class NK_COMBO(object):
@@ -183,7 +200,6 @@ class NK_COMBO(object):
             self.fourier_freq.append(eigval)
             self.fourier_basis.append(eigvec)
         self.nkmodel = NKmodel(N, K, A, interdependence=im, contributions=ctrbs, random_seeds=random_seeds[:2])
-        self.nkmodel.print_info(path="/Users/hanseul_jo/Desktop/Post AI/COMBO/")
 
     def evaluate(self, x):
         if x.dim() == 1:
@@ -204,12 +220,16 @@ if __name__ == '__main__':
     parser_ = argparse.ArgumentParser(
         description='COMBO : Combinatorial Bayesian Optimization using the graph Cartesian product')
     parser_.add_argument('--n_eval', dest='n_eval', type=int, default=1)
+    parser_.add_argument('--N', dest='N', type=int, default=6)
+    parser_.add_argument('--K', dest='K', type=int, default=1)
+    parser_.add_argument('--A', dest='A', type=int, default=2)
     parser_.add_argument('--dir_name', dest='dir_name')
     parser_.add_argument('--objective', dest='objective', default='nkmodel')
     parser_.add_argument('--random_seed_config', dest='random_seed_config', type=int, default=None)
     parser_.add_argument('--parallel', dest='parallel', action='store_true', default=False)
     parser_.add_argument('--device', dest='device', type=int, default=None)
     parser_.add_argument('--task', dest='task', type=str, default='both')
+    parser_.add_argument('--model_info_path', dest='model_info_path')
 
     args_ = parser_.parse_args()
     print(args_)
@@ -230,8 +250,10 @@ if __name__ == '__main__':
         random_seed_pair_ = generate_random_seed_pair_nkmodel()
         case_seed_ = sorted(random_seed_pair_.keys())[int(random_seed_config_ / 5)]
         init_seed_ = sorted(random_seed_pair_[case_seed_])[int(random_seed_config_ % 5)]
-        kwag_['objective'] = NK_COMBO(6, 1, random_seeds=(case_seed_[0], case_seed_[1], init_seed_))
+        kwag_['objective'] = NK_COMBO(args_.N, args_.K, A=args_.A, random_seeds=(case_seed_[0], case_seed_[1], init_seed_))
     else:
         if dir_name_ is None:
             raise NotImplementedError
     COMBO(**kwag_)
+    if objective_ == 'nkmodel':
+        kwag_['objective'].nkmodel.print_info(path=args_.model_info_path)

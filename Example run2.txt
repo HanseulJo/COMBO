@@ -1,0 +1,460 @@
+python ./main_NKmodel.py --N 6 --K 2 --A 2 --n_eval 20 --random_seed_config 2
+Unable to import torch.fx, you pytorch version may be too old.
+Namespace(A=2, K=2, N=6, device=None, dir_name=None, model_info_path=None, n_eval=20, objective='nkmodel', parallel=False, random_seed_config=2, task='both')
+{'n_eval': 20, 'N': 6, 'K': 2, 'A': 2, 'dir_name': None, 'objective': 'nkmodel', 'random_seed_config': 2, 'parallel': False, 'task': 'both', 'model_info_path': None}
+(05:43:25) Burn-in
+(05:43:46)   100% (100 of 100) |##################################################|
+(05:43:46) Sampling
+(05:43:48)   100% (10 of 10) |##################################################|
+(05:43:48) Acquisition function optimization initial points selection began
+(05:43:48) Acquisition function optimization initial points selection ended - 00:00:00
+(05:43:48) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:43:48 and took 00:00:01
+5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01  5.041E-01
+(05:43:50) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:43:50) Sampling
+(05:43:52)   100% (10 of 10) |##################################################|
+(05:43:52) Acquisition function optimization initial points selection began
+(05:43:52) Acquisition function optimization initial points selection ended - 00:00:00
+(05:43:52) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:43:52 and took 00:00:01
+6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01  6.575E-01
+(05:43:54) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:43:54) Sampling
+(05:43:56)   100% (10 of 10) |##################################################|
+(05:43:56) Acquisition function optimization initial points selection began
+(05:43:56) Acquisition function optimization initial points selection ended - 00:00:00
+(05:43:56) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:43:56 and took 00:00:01
+1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00  1.220E+00
+(05:43:58) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:43:58) Sampling
+(05:44:00)   100% (10 of 10) |##################################################|
+(05:44:00) Acquisition function optimization initial points selection began
+(05:44:00) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:00) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:00 and took 00:00:01
+1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00  1.292E+00
+(05:44:02) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:02) Sampling
+(05:44:04)   100% (10 of 10) |##################################################|
+(05:44:04) Acquisition function optimization initial points selection began
+(05:44:04) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:04) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:04 and took 00:00:01
+1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00  1.627E+00
+(05:44:06) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:06) Sampling
+(05:44:08)   100% (10 of 10) |##################################################|
+(05:44:08) Acquisition function optimization initial points selection began
+(05:44:08) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:08) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:08 and took 00:00:01
+9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01  9.307E-01
+(05:44:10) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:10) Sampling
+(05:44:12)   100% (10 of 10) |##################################################|
+(05:44:12) Acquisition function optimization initial points selection began
+(05:44:12) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:12) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:12 and took 00:00:01
+5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01  5.246E-01
+(05:44:14) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:14) Sampling
+(05:44:16)   100% (10 of 10) |##################################################|
+(05:44:16) Acquisition function optimization initial points selection began
+(05:44:17) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:17) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:17 and took 00:00:01
+6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01  6.708E-01
+(05:44:18) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:18) Sampling
+(05:44:20)   100% (10 of 10) |##################################################|
+(05:44:20) Acquisition function optimization initial points selection began
+(05:44:21) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:21) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:21 and took 00:00:01
+4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01  4.547E-01
+(05:44:23) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+05:44:23(00:00:04)   11-th :      -3.0539, mean : -3.0301E+00, std : 6.8960E-01, var : 5.2444E-01, min :  -4.0095(  8)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:23) Sampling
+(05:44:25)   100% (10 of 10) |##################################################|
+(05:44:25) Acquisition function optimization initial points selection began
+(05:44:25) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:25) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:25 and took 00:00:01
+5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01  5.102E-01
+(05:44:27) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+05:44:23(00:00:04)   11-th :      -3.0539, mean : -3.0301E+00, std : 6.8960E-01, var : 5.2444E-01, min :  -4.0095(  8)
+05:44:27(00:00:04)   12-th :      -2.7966, mean : -3.0205E+00, std : 8.1786E-01, var : 7.0245E-01, min :  -4.0095(  8)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:27) Sampling
+(05:44:29)   100% (10 of 10) |##################################################|
+(05:44:29) Acquisition function optimization initial points selection began
+(05:44:29) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:29) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:29 and took 00:00:01
+4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01  4.436E-01
+(05:44:31) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+05:44:23(00:00:04)   11-th :      -3.0539, mean : -3.0301E+00, std : 6.8960E-01, var : 5.2444E-01, min :  -4.0095(  8)
+05:44:27(00:00:04)   12-th :      -2.7966, mean : -3.0205E+00, std : 8.1786E-01, var : 7.0245E-01, min :  -4.0095(  8)
+05:44:31(00:00:04)   13-th :      -2.6570, mean : -3.0191E+00, std : 7.7949E-01, var : 6.5040E-01, min :  -4.0095(  8)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:31) Sampling
+(05:44:33)   100% (10 of 10) |##################################################|
+(05:44:33) Acquisition function optimization initial points selection began
+(05:44:33) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:33) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:33 and took 00:00:01
+3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01  3.566E-01
+(05:44:35) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+05:44:23(00:00:04)   11-th :      -3.0539, mean : -3.0301E+00, std : 6.8960E-01, var : 5.2444E-01, min :  -4.0095(  8)
+05:44:27(00:00:04)   12-th :      -2.7966, mean : -3.0205E+00, std : 8.1786E-01, var : 7.0245E-01, min :  -4.0095(  8)
+05:44:31(00:00:04)   13-th :      -2.6570, mean : -3.0191E+00, std : 7.7949E-01, var : 6.5040E-01, min :  -4.0095(  8)
+05:44:35(00:00:04)   14-th :      -3.1997, mean : -2.8954E+00, std : 7.9337E-01, var : 6.6981E-01, min :  -4.0095(  8)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:35) Sampling
+(05:44:37)   100% (10 of 10) |##################################################|
+(05:44:37) Acquisition function optimization initial points selection began
+(05:44:37) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:37) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:37 and took 00:00:01
+7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02  7.780E-02
+(05:44:39) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+05:44:23(00:00:04)   11-th :      -3.0539, mean : -3.0301E+00, std : 6.8960E-01, var : 5.2444E-01, min :  -4.0095(  8)
+05:44:27(00:00:04)   12-th :      -2.7966, mean : -3.0205E+00, std : 8.1786E-01, var : 7.0245E-01, min :  -4.0095(  8)
+05:44:31(00:00:04)   13-th :      -2.6570, mean : -3.0191E+00, std : 7.7949E-01, var : 6.5040E-01, min :  -4.0095(  8)
+05:44:35(00:00:04)   14-th :      -3.1997, mean : -2.8954E+00, std : 7.9337E-01, var : 6.6981E-01, min :  -4.0095(  8)
+05:44:39(00:00:03)   15-th :      -3.2389, mean : -2.4674E+00, std : 7.5823E-01, var : 5.8858E-01, min :  -4.0095(  8)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:39) Sampling
+(05:44:41)   100% (10 of 10) |##################################################|
+(05:44:41) Acquisition function optimization initial points selection began
+(05:44:41) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:41) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:41 and took 00:00:01
+3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01  3.461E-01
+(05:44:43) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+05:44:23(00:00:04)   11-th :      -3.0539, mean : -3.0301E+00, std : 6.8960E-01, var : 5.2444E-01, min :  -4.0095(  8)
+05:44:27(00:00:04)   12-th :      -2.7966, mean : -3.0205E+00, std : 8.1786E-01, var : 7.0245E-01, min :  -4.0095(  8)
+05:44:31(00:00:04)   13-th :      -2.6570, mean : -3.0191E+00, std : 7.7949E-01, var : 6.5040E-01, min :  -4.0095(  8)
+05:44:35(00:00:04)   14-th :      -3.1997, mean : -2.8954E+00, std : 7.9337E-01, var : 6.6981E-01, min :  -4.0095(  8)
+05:44:39(00:00:03)   15-th :      -3.2389, mean : -2.4674E+00, std : 7.5823E-01, var : 5.8858E-01, min :  -4.0095(  8)
+05:44:43(00:00:04)   16-th :      -4.8049, mean : -3.0750E+00, std : 6.8410E-01, var : 5.0417E-01, min :  -4.8049( 16)  <==== IMPROVED
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:43) Sampling
+(05:44:45)   100% (10 of 10) |##################################################|
+(05:44:45) Acquisition function optimization initial points selection began
+(05:44:45) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:45) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:45 and took 00:00:01
+3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01  3.237E-01
+(05:44:47) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+05:44:23(00:00:04)   11-th :      -3.0539, mean : -3.0301E+00, std : 6.8960E-01, var : 5.2444E-01, min :  -4.0095(  8)
+05:44:27(00:00:04)   12-th :      -2.7966, mean : -3.0205E+00, std : 8.1786E-01, var : 7.0245E-01, min :  -4.0095(  8)
+05:44:31(00:00:04)   13-th :      -2.6570, mean : -3.0191E+00, std : 7.7949E-01, var : 6.5040E-01, min :  -4.0095(  8)
+05:44:35(00:00:04)   14-th :      -3.1997, mean : -2.8954E+00, std : 7.9337E-01, var : 6.6981E-01, min :  -4.0095(  8)
+05:44:39(00:00:03)   15-th :      -3.2389, mean : -2.4674E+00, std : 7.5823E-01, var : 5.8858E-01, min :  -4.0095(  8)
+05:44:43(00:00:04)   16-th :      -4.8049, mean : -3.0750E+00, std : 6.8410E-01, var : 5.0417E-01, min :  -4.8049( 16)  <==== IMPROVED
+05:44:47(00:00:04)   17-th :      -4.1890, mean : -3.4688E+00, std : 8.2111E-01, var : 7.1566E-01, min :  -4.8049( 16)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:47) Sampling
+(05:44:49)   100% (10 of 10) |##################################################|
+(05:44:49) Acquisition function optimization initial points selection began
+(05:44:50) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:50) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:50 and took 00:00:01
+1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01  1.554E-01
+(05:44:51) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+05:44:23(00:00:04)   11-th :      -3.0539, mean : -3.0301E+00, std : 6.8960E-01, var : 5.2444E-01, min :  -4.0095(  8)
+05:44:27(00:00:04)   12-th :      -2.7966, mean : -3.0205E+00, std : 8.1786E-01, var : 7.0245E-01, min :  -4.0095(  8)
+05:44:31(00:00:04)   13-th :      -2.6570, mean : -3.0191E+00, std : 7.7949E-01, var : 6.5040E-01, min :  -4.0095(  8)
+05:44:35(00:00:04)   14-th :      -3.1997, mean : -2.8954E+00, std : 7.9337E-01, var : 6.6981E-01, min :  -4.0095(  8)
+05:44:39(00:00:03)   15-th :      -3.2389, mean : -2.4674E+00, std : 7.5823E-01, var : 5.8858E-01, min :  -4.0095(  8)
+05:44:43(00:00:04)   16-th :      -4.8049, mean : -3.0750E+00, std : 6.8410E-01, var : 5.0417E-01, min :  -4.8049( 16)  <==== IMPROVED
+05:44:47(00:00:04)   17-th :      -4.1890, mean : -3.4688E+00, std : 8.2111E-01, var : 7.1566E-01, min :  -4.8049( 16)
+05:44:51(00:00:04)   18-th :      -4.0974, mean : -3.2730E+00, std : 8.1768E-01, var : 7.0435E-01, min :  -4.8049( 16)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:51) Sampling
+(05:44:53)   100% (10 of 10) |##################################################|
+(05:44:53) Acquisition function optimization initial points selection began
+(05:44:54) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:54) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:54 and took 00:00:01
+2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01  2.090E-01
+(05:44:56) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+05:44:23(00:00:04)   11-th :      -3.0539, mean : -3.0301E+00, std : 6.8960E-01, var : 5.2444E-01, min :  -4.0095(  8)
+05:44:27(00:00:04)   12-th :      -2.7966, mean : -3.0205E+00, std : 8.1786E-01, var : 7.0245E-01, min :  -4.0095(  8)
+05:44:31(00:00:04)   13-th :      -2.6570, mean : -3.0191E+00, std : 7.7949E-01, var : 6.5040E-01, min :  -4.0095(  8)
+05:44:35(00:00:04)   14-th :      -3.1997, mean : -2.8954E+00, std : 7.9337E-01, var : 6.6981E-01, min :  -4.0095(  8)
+05:44:39(00:00:03)   15-th :      -3.2389, mean : -2.4674E+00, std : 7.5823E-01, var : 5.8858E-01, min :  -4.0095(  8)
+05:44:43(00:00:04)   16-th :      -4.8049, mean : -3.0750E+00, std : 6.8410E-01, var : 5.0417E-01, min :  -4.8049( 16)  <==== IMPROVED
+05:44:47(00:00:04)   17-th :      -4.1890, mean : -3.4688E+00, std : 8.2111E-01, var : 7.1566E-01, min :  -4.8049( 16)
+05:44:51(00:00:04)   18-th :      -4.0974, mean : -3.2730E+00, std : 8.1768E-01, var : 7.0435E-01, min :  -4.8049( 16)
+05:44:56(00:00:04)   19-th :      -4.7709, mean : -3.4019E+00, std : 8.5447E-01, var : 7.7071E-01, min :  -4.8049( 16)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+(05:44:56) Sampling
+(05:44:58)   100% (10 of 10) |##################################################|
+(05:44:58) Acquisition function optimization initial points selection began
+(05:44:58) Acquisition function optimization initial points selection ended - 00:00:00
+(05:44:58) Acquisition function optimization with 20 inits
+    Greedy Ascent  began at 05:44:58 and took 00:00:01
+4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01  4.627E-01
+(05:45:00) Acquisition function optimization ended 00:00:01
+05:43:25(00:00:00)    1-th :      -1.5705, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.5705(  1)  <==== IMPROVED
+05:43:25(00:00:00)    2-th :      -1.9292, mean : +0.0000E+00, std : 0.0000E+00, var : 0.0000E+00, min :  -1.9292(  2)  <==== IMPROVED
+05:43:50(00:00:04)    3-th :      -2.8228, mean : -1.7486E+00, std : 2.8775E-01, var : 1.0394E-01, min :  -2.8228(  3)  <==== IMPROVED
+05:43:54(00:00:04)    4-th :      -3.5303, mean : -2.2311E+00, std : 6.2337E-01, var : 4.3189E-01, min :  -3.5303(  4)  <==== IMPROVED
+05:43:58(00:00:03)    5-th :      -2.9144, mean : -2.0586E+00, std : 1.2393E+00, var : 2.0469E+00, min :  -3.5303(  4)
+05:44:02(00:00:04)    6-th :      -3.4126, mean : -2.9335E+00, std : 8.6413E-01, var : 7.9113E-01, min :  -3.5303(  4)
+05:44:06(00:00:04)    7-th :      -3.2729, mean : -2.8779E+00, std : 1.0141E+00, var : 1.0647E+00, min :  -3.5303(  4)
+05:44:10(00:00:04)    8-th :      -4.0095, mean : -2.8710E+00, std : 7.9649E-01, var : 6.4718E-01, min :  -4.0095(  8)  <==== IMPROVED
+05:44:14(00:00:04)    9-th :      -2.2232, mean : -2.9928E+00, std : 8.4227E-01, var : 7.4774E-01, min :  -4.0095(  8)
+05:44:18(00:00:04)   10-th :      -3.3935, mean : -2.7843E+00, std : 1.0628E+00, var : 1.1397E+00, min :  -4.0095(  8)
+05:44:23(00:00:04)   11-th :      -3.0539, mean : -3.0301E+00, std : 6.8960E-01, var : 5.2444E-01, min :  -4.0095(  8)
+05:44:27(00:00:04)   12-th :      -2.7966, mean : -3.0205E+00, std : 8.1786E-01, var : 7.0245E-01, min :  -4.0095(  8)
+05:44:31(00:00:04)   13-th :      -2.6570, mean : -3.0191E+00, std : 7.7949E-01, var : 6.5040E-01, min :  -4.0095(  8)
+05:44:35(00:00:04)   14-th :      -3.1997, mean : -2.8954E+00, std : 7.9337E-01, var : 6.6981E-01, min :  -4.0095(  8)
+05:44:39(00:00:03)   15-th :      -3.2389, mean : -2.4674E+00, std : 7.5823E-01, var : 5.8858E-01, min :  -4.0095(  8)
+05:44:43(00:00:04)   16-th :      -4.8049, mean : -3.0750E+00, std : 6.8410E-01, var : 5.0417E-01, min :  -4.8049( 16)  <==== IMPROVED
+05:44:47(00:00:04)   17-th :      -4.1890, mean : -3.4688E+00, std : 8.2111E-01, var : 7.1566E-01, min :  -4.8049( 16)
+05:44:51(00:00:04)   18-th :      -4.0974, mean : -3.2730E+00, std : 8.1768E-01, var : 7.0435E-01, min :  -4.8049( 16)
+05:44:56(00:00:04)   19-th :      -4.7709, mean : -3.4019E+00, std : 8.5447E-01, var : 7.7071E-01, min :  -4.8049( 16)
+05:45:00(00:00:04)   20-th :      -4.3111, mean : -3.5654E+00, std : 9.0866E-01, var : 8.7377E-01, min :  -4.8049( 16)
+Optimizing NK_COMBO with regularization 0.00E+00, random seed : 0077R4565R3567
+
+Interdependence Matrix:
+XOOXXO
+OXOXOX
+OXXOOX
+XOOXXO
+XOOOXX
+XOOXOX
+
+Landscape:
+000000  0.848   0.6747  0.371   0.7695  0.0259  0.2254  2.9144
+000001  0.848   0.3078  0.5415  0.7695  0.3038  0.2381  3.0087
+000010  0.5776  0.6747  0.371   0.0015  0.8069  0.2254  2.657
+000011  0.5776  0.3078  0.5415  0.0015  0.6468  0.2381  2.3133
+000100  0.1143  0.6694  0.371   0.842   0.0259  0.7741  2.7966
+000101  0.1143  0.4687  0.5415  0.842   0.3038  0.2555  2.5258
+000110  0.0943  0.6694  0.371   0.6779  0.8069  0.7741  3.3935
+000111  0.0943  0.4687  0.5415  0.6779  0.6468  0.2555  2.6847
+001000  0.848   0.6747  0.9869  0.7695  0.0259  0.2254  3.5303
+001001  0.848   0.3078  0.08    0.7695  0.3038  0.2381  2.5472
+001010  0.5776  0.6747  0.9869  0.0015  0.8069  0.2254  3.2729
+001011  0.5776  0.3078  0.08    0.0015  0.6468  0.2381  1.8518
+001100  0.1143  0.6694  0.9869  0.842   0.0259  0.7741  3.4126
+001101  0.1143  0.4687  0.08    0.842   0.3038  0.2555  2.0643
+001110  0.0943  0.6694  0.9869  0.6779  0.8069  0.7741  4.0095
+001111  0.0943  0.4687  0.08    0.6779  0.6468  0.2555  2.2232
+010000  0.848   0.7925  0.8351  0.7695  0.0259  0.2254  3.4963
+010001  0.848   0.4864  0.3278  0.7695  0.3038  0.2381  2.9736
+010010  0.5776  0.7925  0.8351  0.0015  0.8069  0.2254  3.2389
+010011  0.5776  0.4864  0.3278  0.0015  0.6468  0.2381  2.2782
+010100  0.1143  0.0114  0.8351  0.842   0.0259  0.7741  2.6028
+010101  0.1143  0.7844  0.3278  0.842   0.3038  0.2555  2.6278
+010110  0.0943  0.0114  0.8351  0.6779  0.8069  0.7741  3.1997
+010111  0.0943  0.7844  0.3278  0.6779  0.6468  0.2555  2.7867
+011000  0.848   0.7925  0.1615  0.7695  0.0259  0.2254  2.8228
+011001  0.848   0.4864  0.0286  0.7695  0.3038  0.2381  2.6744
+011010  0.5776  0.7925  0.1615  0.0015  0.8069  0.2254  2.5654
+011011  0.5776  0.4864  0.0286  0.0015  0.6468  0.2381  1.979
+011100  0.1143  0.0114  0.1615  0.842   0.0259  0.7741  1.9292
+011101  0.1143  0.7844  0.0286  0.842   0.3038  0.2555  2.3286
+011110  0.0943  0.0114  0.1615  0.6779  0.8069  0.7741  2.5261
+011111  0.0943  0.7844  0.0286  0.6779  0.6468  0.2555  2.4875
+100000  0.5839  0.6747  0.371   0.8746  0.8594  0.8254  4.189
+100001  0.5839  0.3078  0.5415  0.8746  0.9968  0.5204  3.8251
+100010  0.8177  0.6747  0.371   0.152   0.1579  0.8254  2.9988
+100011  0.8177  0.3078  0.5415  0.152   0.3945  0.5204  2.734
+100100  0.872   0.6694  0.371   0.418   0.8594  0.5054  3.6952
+100101  0.872   0.4687  0.5415  0.418   0.9968  0.3172  3.6143
+100110  0.3383  0.6694  0.371   0.3959  0.1579  0.5054  2.4379
+100111  0.3383  0.4687  0.5415  0.3959  0.3945  0.3172  2.4562
+101000  0.5839  0.6747  0.9869  0.8746  0.8594  0.8254  4.8049
+101001  0.5839  0.3078  0.08    0.8746  0.9968  0.5204  3.3636
+101010  0.8177  0.6747  0.9869  0.152   0.1579  0.8254  3.6147
+101011  0.8177  0.3078  0.08    0.152   0.3945  0.5204  2.2725
+101100  0.872   0.6694  0.9869  0.418   0.8594  0.5054  4.3111
+101101  0.872   0.4687  0.08    0.418   0.9968  0.3172  3.1528
+101110  0.3383  0.6694  0.9869  0.3959  0.1579  0.5054  3.0539
+101111  0.3383  0.4687  0.08    0.3959  0.3945  0.3172  1.9947
+110000  0.5839  0.7925  0.8351  0.8746  0.8594  0.8254  4.7709
+110001  0.5839  0.4864  0.3278  0.8746  0.9968  0.5204  3.7899
+110010  0.8177  0.7925  0.8351  0.152   0.1579  0.8254  3.5807
+110011  0.8177  0.4864  0.3278  0.152   0.3945  0.5204  2.6989
+110100  0.872   0.0114  0.8351  0.418   0.8594  0.5054  3.5013
+110101  0.872   0.7844  0.3278  0.418   0.9968  0.3172  3.7163
+110110  0.3383  0.0114  0.8351  0.3959  0.1579  0.5054  2.2441
+110111  0.3383  0.7844  0.3278  0.3959  0.3945  0.3172  2.5583
+111000  0.5839  0.7925  0.1615  0.8746  0.8594  0.8254  4.0974
+111001  0.5839  0.4864  0.0286  0.8746  0.9968  0.5204  3.4908
+111010  0.8177  0.7925  0.1615  0.152   0.1579  0.8254  2.9072
+111011  0.8177  0.4864  0.0286  0.152   0.3945  0.5204  2.3997
+111100  0.872   0.0114  0.1615  0.418   0.8594  0.5054  2.8278
+111101  0.872   0.7844  0.0286  0.418   0.9968  0.3172  3.4171
+111110  0.3383  0.0114  0.1615  0.3959  0.1579  0.5054  1.5705
+111111  0.3383  0.7844  0.0286  0.3959  0.3945  0.3172  2.2591
+===
+1-th optimum: 4.804917023126751 [(1, 0, 1, 0, 0, 0)]
+2-th optimum: 4.770919267699842 [(1, 1, 0, 0, 0, 0)]
+3-th optimum: 4.3111156053725335 [(1, 0, 1, 1, 0, 0)]
+4-th optimum: 4.188957856710245 [(1, 0, 0, 0, 0, 0)]
+5-th optimum: 4.097377448779489 [(1, 1, 1, 0, 0, 0)]
+6-th optimum: 4.009479065276088 [(0, 0, 1, 1, 1, 0)]
+7-th optimum: 3.8250548806338 [(1, 0, 0, 0, 0, 1)]
+8-th optimum: 3.7899254395509794 [(1, 1, 0, 0, 0, 1)]
+9-th optimum: 3.7163144828590333 [(1, 1, 0, 1, 0, 1)]
+10-th optimum: 3.6951564389560287 [(1, 0, 0, 1, 0, 0)]
