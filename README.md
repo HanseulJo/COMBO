@@ -51,8 +51,14 @@ To optimize 'pestcontrol' with 300 evaluations
 * Class "NKmodel" constructs an NKmodel. It initially generates a random (or you can fix an) interdependence matrix (--> self.interdependence) and a random  (or you can fix an) contribution map (--> self.contributions). You can calculate fitness value for each status (tuple of length N), whole landscape, global optimum, etc. with class methods.
 * Example run: (N, K, A 넣자)
 ```bash
-python ./main_NKmodel.py --n_eval 40 --random_seed_config 1
+python ./main_NKmodel.py --N 6 --K 1 --A 2 --n_eval 20 --random_seed_config 1
 ```
+
+* Additional arguments:
+* - "--N": The number of loci
+* - "--K": The number of the other loci which have effects on each locus.
+* - "--A": The number of states that each locus can have.
+* - "--model_info_path": Path to save interdependence matrix("knowledge.txt") and a table of fitness landscape with contributions("landscape.txt"). If it is None (not given), then the interdependence matrix and landscape will be printed through stdout after the BO runs.
 
 ### Etc.:
 * "COMBO/main.py" file has been moved outside of the folder "COMBO/". This prevents error relevant to modules.
