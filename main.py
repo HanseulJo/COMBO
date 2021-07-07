@@ -106,7 +106,7 @@ def run_bo(exp_dirname, task, store_data, parallel):
               % (objective.__class__.__name__, objective.lamda if hasattr(objective, 'lamda') else 0,
                  objective.random_seed_info if hasattr(objective, 'random_seed_info') else 'none'))
 
-    return eval_outputs.size(0)
+    return eval_outputs.size(0), eval_inputs, eval_outputs
 
 
 def COMBO(objective=None, n_eval=200, dir_name=None, parallel=False, store_data=False, task='both', **kwargs):
@@ -180,10 +180,14 @@ def COMBO(objective=None, n_eval=200, dir_name=None, parallel=False, store_data=
                    'acquisition_func': acquisition_func, 'objective': objective}
         torch.save(bo_data, os.path.join(exp_dirname, 'bo_data.pt'))
 
+    log_dir = dir_name if objective is None else exp_dirname
     eval_cnt = 0
     while eval_cnt < n_eval:
-        eval_cnt = run_bo(exp_dirname=dir_name if objective is None else exp_dirname,
-                          store_data=store_data, task=task, parallel=parallel)
+        eval_cnt, _, _ = run_bo(exp_dirname=log_dir, store_data=store_data, task=task, parallel=parallel)
+    
+    bo_data_filename = os.path.join(experiment_directory(), log_dir, 'bo_data.pt')
+    bo_data = torch.load(bo_data_filename)
+    return bo_data['eval_inputs'], bo_data['eval_outputs'], log_dir
 
 
 if __name__ == '__main__':
@@ -211,6 +215,9 @@ if __name__ == '__main__':
     if random_seed_config_ is not None:
         assert 1 <= int(random_seed_config_) <= 25
         random_seed_config_ -= 1
+    else:
+        import random
+        random_seed_config_ = random.randint(1,25)
     assert (dir_name_ is None) != (objective_ is None)
 
     if objective_ == 'branin':

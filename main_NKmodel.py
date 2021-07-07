@@ -3,14 +3,24 @@ import numpy as np
 import torch
 import sys
 import itertools
+import matplotlib.pyplot as plt
+from torch.utils.tensorboard import SummaryWriter
+from time import time
 
 from main import COMBO
 from COMBO.experiments.test_functions.experiment_configuration import sample_init_points
 
-
-NKMODEL_N_STAGES = 6
 INITIAL_POINTS_N = 2  # if it is <= 1, it raises ZeroDivisionError.
-#NKMODEL_DATAPATH = "/Users/hanseul_jo/Desktop/Post AI/Exp input/Game1 landscape.txt"
+
+# If USE_DATA = True, the NK_COMBO will use the data
+# Change the paths if you want.
+USE_DATA = False
+GAME_NUM = 4
+NKMODEL_DATAPATH = f"../Exp input/Game{GAME_NUM} landscape.txt"
+NKMODEL_IM_PATH = f"../Exp input/Game{GAME_NUM} knowledge.txt"
+
+# If RECORD = True, the result will be recorded in a file
+RECORD = True
 
 def _generate_random_seeds(seed_str, n_test_case_seed=5, n_init_point_seed=5, seed_num=3):
     """
@@ -28,6 +38,31 @@ def generate_random_seed_pair_nkmodel():
     """
     return _generate_random_seeds(seed_str="NKMODEL", n_test_case_seed=5, n_init_point_seed=5, seed_num=3)
 
+def text_to_interdependence(path):
+    with open(path, "r") as f:
+        im = np.stack(tuple([[l == "X" for l in line.strip()] for line in f]))
+    return im
+
+def text_to_landscape(path):
+    landscape = {}
+    with open(path, "r") as f:
+        for line in f:
+            line = line.strip().split('\t')
+            k = tuple([int(x) for x in line[0]])
+            fit = int(line[-1])
+            ctrbs = [int(x) for x in line[1:-1]]
+            landscape[k] = (fit, ctrbs)
+    return landscape
+
+def im_landscape_to_contributions(im, landscape, A=2):
+    N = im.shape[0]
+    K = im[0].sum() - 1
+    ctrbs = [{} for _ in range(N)]
+    for i in range(N):
+        for state in itertools.product(*[range(A) if x else [0] for x in list(im[i])]):  
+            label = tuple([state[j] for j in range(N) if im[i][j]])
+            ctrbs[i][label] = landscape[state][1][i]
+    return ctrbs
 
 class NKmodel(object):
     """
@@ -47,7 +82,7 @@ class NKmodel(object):
         self.loci = range(N)
         if interdependence is None:
             # randomly generated interdependence matrix
-            self.interdependence = np.full((N,N), False)  #numpy 1.8
+            self.interdependence = np.full((N,N), False)
             rng_state_dep = np.random.RandomState(seed=random_seeds[0])
             for i in self.loci:
                 dependence = [i] + list(rng_state_dep.choice(list(set(self.loci) - set([i])), size=K, replace=False))
@@ -59,7 +94,7 @@ class NKmodel(object):
             rng_state_ctrb = np.random.RandomState(seed=random_seeds[1])
             for i in range(N):
                 for label in itertools.product(range(A), repeat=K+1):  # K+1 subcollection of loci values that effects the locus i
-                    self.contributions[i][label] = float(rng_state_ctrb.random())  # between [0,1]   --> 다르게도 할 수 있지 않을까
+                    self.contributions[i][label] = float(rng_state_ctrb.randint(0,30))  # integers [0, 30]: Can be modified.
         else:
             self.contributions = contributions
 
@@ -111,7 +146,7 @@ class NKmodel(object):
         """
         raise NotImplementedError
 
-    def get_global_optimum(self, negative=False):
+    def get_global_optimum(self, negative=False, cache=False):
         """
         Global maximum fitness value and its maximizer(state), in a NAIVE way.
         """
@@ -120,26 +155,36 @@ class NKmodel(object):
         states = [s for s in landscape.keys() if landscape[s] == optimum]
         if negative:
             optimum = -optimum
-        return optimum, states
+        if cache:
+            return optimum, states, landscape
+        else:
+            return optimum, states
         
-    def get_optimum_and_more(self, order, negative=False):
+    def get_optimum_and_more(self, order, negative=False, cache=False):
         """
         First several maximum fitness values and their maximizers(states), in a NAIVE way.
         """
-        landscape_list = sorted(self.landscape().items(), key=lambda x: -x[1])
-        optima2states = {}
-        cnt = 0
-        for state, fitness in landscape_list:
+        landscape = self.landscape()
+        landscape_list = sorted(landscape.items(), key=lambda x: -x[1])
+        state_opt, fit_opt = landscape_list[0]
+        if negative:
+            fit_opt = -fit_opt
+        optima2states = [{"fitness": fit_opt, "states":[state_opt]}]
+        cnt = 1
+        for state, fitness in landscape_list[1:]:
             if negative:
                 fitness = -fitness
-            if fitness in optima2states:
-                optima2states[fitness].append(state)
+            if fitness == optima2states[-1]["fitness"]:
+                optima2states[-1]["states"].append(state)
             else:
                 cnt += 1
                 if cnt > order:
                     break
-                optima2states[fitness] = [state]
-        return optima2states
+                optima2states.append({"fitness": fitness, "states":[state]})
+        if cache:
+            return optima2states, landscape
+        else:
+            return optima2states
     
     def print_info(self, path=None):
         if path is None:
@@ -154,16 +199,15 @@ class NKmodel(object):
                 state = "".join([str(x) for x in state])
                 print("\t".join([state] + ctrbs + [fit]))
             print("===")
-            optlist = list(self.get_optimum_and_more(order=10).items())
-            optlist.sort(key=lambda x: -x[0])
+            optlist = self.get_optimum_and_more(order=10)
             for i in range(10):
-                opt, optstates = optlist[i]
+                opt, optstates = optlist[i]["fitness"], optlist[i]["states"]
                 print(f"{i+1}-th optimum: {opt} {optstates}")
         else:
-            with open(path + "knowledge.txt", "w") if path is not None else sys.stdout as f1:
+            with open(path + "/knowledge.txt", "w") if path is not None else sys.stdout as f1:
                 for i in range(self.N):
                     print("".join(["X" if b else "O" for b in self.interdependence[i]]), file=f1)
-            with open(path + "landscape.txt", "w") if path is not None else sys.stdout as f2:
+            with open(path + "/landscape.txt", "w") if path is not None else sys.stdout as f2:
                 d = self.landscape_with_contributions()
                 for state, (fit, ctrbs) in d.items():
                     ctrbs = [str(round(v, 4)) for v in ctrbs]
@@ -171,11 +215,10 @@ class NKmodel(object):
                     state = "".join([str(x) for x in state])
                     print("\t".join([state] + ctrbs + [fit]), file=f2)
                 print("===", file=f2)
-                optlist = list(self.get_optimum_and_more(order=10).items())
-                optlist.sort(key=lambda x: -x[0])
+                optlist = self.get_optimum_and_more(order=10)
                 for i in range(10):
-                    opt, optstates = optlist[i]
-                    print(f"{i+1}-th optimum: {opt} {optstates}\n", file=f2)
+                    opt, optstates = optlist[i]["fitness"], optlist[i]["states"]
+                    print(f"{i+1}-th optimum: {opt} {optstates}", file=f2)
 
 
 class NK_COMBO(object):
@@ -212,8 +255,9 @@ class NK_COMBO(object):
         assert x.numel() == len(self.n_vertices)
         if x.dim() == 2:
             x = x.squeeze(0)
-        evaluation = self.nkmodel.fitness(tuple(x), negative=True)
+        evaluation = self.nkmodel.fitness(tuple(x), negative=True)  # To solve minimization problem, "negative=True."
         return torch.Tensor([evaluation])  # 1 by 1 Tensor
+
 
 
 if __name__ == '__main__':
@@ -229,9 +273,16 @@ if __name__ == '__main__':
     parser_.add_argument('--parallel', dest='parallel', action='store_true', default=False)
     parser_.add_argument('--device', dest='device', type=int, default=None)
     parser_.add_argument('--task', dest='task', type=str, default='both')
-    parser_.add_argument('--model_info_path', dest='model_info_path')
+    parser_.add_argument('--game_num', dest='game_num', type=int, default=-1)
 
     args_ = parser_.parse_args()
+
+    if args_.game_num != -1:
+        USE_DATA = True
+        GAME_NUM = args_.game_num
+        NKMODEL_DATAPATH = f"../Exp input/Game{GAME_NUM} landscape.txt"
+        NKMODEL_IM_PATH = f"../Exp input/Game{GAME_NUM} knowledge.txt"
+
     print(args_)
     kwag_ = vars(args_)
     dir_name_ = kwag_['dir_name']
@@ -250,10 +301,46 @@ if __name__ == '__main__':
         random_seed_pair_ = generate_random_seed_pair_nkmodel()
         case_seed_ = sorted(random_seed_pair_.keys())[int(random_seed_config_ / 5)]
         init_seed_ = sorted(random_seed_pair_[case_seed_])[int(random_seed_config_ % 5)]
-        kwag_['objective'] = NK_COMBO(args_.N, args_.K, A=args_.A, random_seeds=(case_seed_[0], case_seed_[1], init_seed_))
+        im, ctrbs = None, None
+        if USE_DATA:
+            im = text_to_interdependence(NKMODEL_IM_PATH)
+            landscape = text_to_landscape(NKMODEL_DATAPATH)
+            ctrbs = im_landscape_to_contributions(im, landscape, A=args_.A)
+        kwag_['objective'] = NK_COMBO(args_.N, args_.K, A=args_.A, im=im, ctrbs=ctrbs,
+                                      random_seeds=(case_seed_[0], case_seed_[1], init_seed_))
     else:
         if dir_name_ is None:
             raise NotImplementedError
-    COMBO(**kwag_)
+    
+    t = time()
+    inputs, outputs, log_dir = COMBO(**kwag_)
+    combo_time = time() - t
+    
     if objective_ == 'nkmodel':
-        kwag_['objective'].nkmodel.print_info(path=args_.model_info_path)
+        model = kwag_['objective'].nkmodel
+        model.print_info(path=log_dir)
+        t = time()
+        fit_opt, states_opt, landscape = model.get_global_optimum(cache=True)
+        naive_time = time() - t
+        if RECORD:
+            writer = SummaryWriter(log_dir=log_dir)
+            inputs = [tuple(x) for x in inputs.int().tolist()]
+            outputs = (-outputs.int().view(-1)).tolist()
+            assert len(inputs) == len(outputs) == args_.n_eval
+            states = sorted(landscape.keys())
+            states_strs = ["".join([str(y) for y in x]) for x in states]
+            landscape_list = [landscape[x] for x in states]
+            fig = plt.figure(figsize=(10,10))
+            plt.plot(states_strs, landscape_list)
+            plt.xticks(rotation=90)
+            plt.scatter(["".join([str(y) for y in x]) for x in states_opt], [fit_opt]*len(states_opt), marker='*', color='tab:orange', s=300)
+            titlestr = lambda n: f"Step {n} (init: {INITIAL_POINTS_N})"
+            for i in range(args_.n_eval):
+                plt.title(titlestr(i+1))
+                plt.scatter(["".join([str(y) for y in inputs[i]])], [outputs[i]], marker=f'${i+1}$', color='k', s=200)
+                writer.add_figure('search_order', fig, global_step=i+1, close=False)
+        print( "=====================================")
+        print( "Runtime comparison:")
+        print(f"COMBO run time: {combo_time:.4f} sec.")
+        print(f"Naive run time: {naive_time:.4f} sec.")
+
