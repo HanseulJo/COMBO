@@ -1,6 +1,7 @@
 import argparse
 import numpy as np
 import torch
+import os
 import sys
 import itertools
 import matplotlib.pyplot as plt
@@ -138,19 +139,11 @@ class NKmodel(object):
         """
         return {state: self.fitness_and_contributions(state) for state in itertools.product(range(self.A), repeat=self.N)}  # along all possible states
 
-    def local_search(self, state):
-        """
-        Given a state(: a tuple/string of length N),
-        Generate "changes" of fitness values when each of loci modified from the state.
-        Return a list of length N.
-        """
-        raise NotImplementedError
-
-    def get_global_optimum(self, negative=False, cache=False):
+    def get_global_optimum(self, negative=False, cache=False, given_landscape=None):
         """
         Global maximum fitness value and its maximizer(state), in a NAIVE way.
         """
-        landscape = self.landscape()
+        landscape = self.landscape() if given_landscape is None else given_landscape
         optimum = max(landscape.values())
         states = [s for s in landscape.keys() if landscape[s] == optimum]
         if negative:
@@ -160,11 +153,11 @@ class NKmodel(object):
         else:
             return optimum, states
         
-    def get_optimum_and_more(self, order, negative=False, cache=False):
+    def get_optimum_and_more(self, order, negative=False, cache=False, given_landscape=None):
         """
         First several maximum fitness values and their maximizers(states), in a NAIVE way.
         """
-        landscape = self.landscape()
+        landscape = self.landscape() if given_landscape is None else given_landscape
         landscape_list = sorted(landscape.items(), key=lambda x: -x[1])
         state_opt, fit_opt = landscape_list[0]
         if negative:
@@ -219,6 +212,10 @@ class NKmodel(object):
                 for i in range(10):
                     opt, optstates = optlist[i]["fitness"], optlist[i]["states"]
                     print(f"{i+1}-th optimum: {opt} {optstates}", file=f2)
+    
+    def rank_by_fitness(self, fitness_value, given_landscape=None):
+        raise NotImplementedError
+        
 
 
 class NK_COMBO(object):
@@ -257,7 +254,6 @@ class NK_COMBO(object):
             x = x.squeeze(0)
         evaluation = self.nkmodel.fitness(tuple(x), negative=True)  # To solve minimization problem, "negative=True."
         return torch.Tensor([evaluation])  # 1 by 1 Tensor
-
 
 
 if __name__ == '__main__':
@@ -313,34 +309,64 @@ if __name__ == '__main__':
             raise NotImplementedError
     
     t = time()
-    inputs, outputs, log_dir = COMBO(**kwag_)
-    combo_time = time() - t
+    log_dir, opt_info = COMBO(**kwag_)
+    optimum_combo, opt_state_ind, combo_opt_time = opt_info
+    combo_total_time = time() - t
+
+    bo_data = torch.load(os.path.join(log_dir, 'bo_data.pt'))
+    inputs, outputs = bo_data['eval_inputs'], bo_data['eval_outputs']
+
+    local_optima, _ = torch.cummin(outputs.view(-1), dim=0) # negative valued.
     
     if objective_ == 'nkmodel':
         model = kwag_['objective'].nkmodel
         model.print_info(path=log_dir)
-        t = time()
         fit_opt, states_opt, landscape = model.get_global_optimum(cache=True)
-        naive_time = time() - t
+        local_gaps = (local_optima + fit_opt).tolist()  # local_optima is negative valued.
+        assert len(local_gaps) == args_.n_eval
+        bo_data['local_gaps'] = local_gaps
+        torch.save(bo_data, os.path.join(log_dir, 'bo_data.pt'))
         if RECORD:
             writer = SummaryWriter(log_dir=log_dir)
             inputs = [tuple(x) for x in inputs.int().tolist()]
             outputs = (-outputs.int().view(-1)).tolist()
-            assert len(inputs) == len(outputs) == args_.n_eval
             states = sorted(landscape.keys())
             states_strs = ["".join([str(y) for y in x]) for x in states]
             landscape_list = [landscape[x] for x in states]
-            fig = plt.figure(figsize=(10,10))
+            assert len(inputs) == len(outputs) == args_.n_eval
+
+            fig1 = plt.figure(figsize=(15,8))
             plt.plot(states_strs, landscape_list)
             plt.xticks(rotation=90)
             plt.scatter(["".join([str(y) for y in x]) for x in states_opt], [fit_opt]*len(states_opt), marker='*', color='tab:orange', s=300)
-            titlestr = lambda n: f"Step {n} (init: {INITIAL_POINTS_N})"
+            plt.title(f"N={args_.N} K={args_.K} (init: {INITIAL_POINTS_N})")
             for i in range(args_.n_eval):
-                plt.title(titlestr(i+1))
                 plt.scatter(["".join([str(y) for y in inputs[i]])], [outputs[i]], marker=f'${i+1}$', color='k', s=200)
-                writer.add_figure('search_order', fig, global_step=i+1, close=False)
-        print( "=====================================")
-        print( "Runtime comparison:")
-        print(f"COMBO run time: {combo_time:.4f} sec.")
-        print(f"Naive run time: {naive_time:.4f} sec.")
+            writer.add_figure('Search Order on Fitness Landscape', fig1)
+
+            fig2 = plt.figure(figsize=(10,8))
+            plt.plot(list(range(1,args_.n_eval+1)), local_gaps)
+            plt.xlabel("iterations (1 ~ n_eval)")
+            plt.ylabel("abs(glob_opt - loc_opt)")
+            writer.add_figure('Gap btw Global-local optimum', fig2)
+
+            print("Plot of Lanscape and Search steps Completed.")
+    
+    
+    t = time()
+    true_inputs = torch.Tensor(list(itertools.product(range(args_.A), repeat=args_.N)))
+    true_outputs = kwag_['objective'].evaluate(true_inputs).view(-1,1)
+    optimum_naive = true_outputs.min().item()
+    opt_state_ind = true_outputs.argmin().item()
+    opt_state = true_inputs[opt_state_ind]
+    naive_time = time()-t
+    assert kwag_['objective'].evaluate(opt_state) == optimum_naive
+    print( "=====================================")
+    print("* Runtime comparison:")
+    print(f"COMBO total run time: {combo_total_time:.4f} sec.")
+    print(f"COMBO loc. opt. run time: {combo_opt_time:.4f} sec.")
+    print(f"Naive run time: {naive_time:.4f} sec.")
+    print("* Result comparison:")
+    print(f"COMBO Result: {-optimum_combo}")
+    print(f"True Optimum: {-optimum_naive}")
 
