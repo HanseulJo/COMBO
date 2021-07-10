@@ -292,7 +292,7 @@ if __name__ == '__main__':
     objective_ = kwag_['objective']
     parallel_ = kwag_['parallel']
     if args_.interdependency_seed is None:
-        kwag_['interdependency_seed'] = np.random.randint(0,3)
+        kwag_['interdependency_seed'] = np.random.randint(0,100)
     if args_.payoff_seed is None:
         kwag_['payoff_seed'] = np.random.randint(0,100)
     if args_.init_point_seed is None:
