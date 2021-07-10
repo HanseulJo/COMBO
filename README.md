@@ -1,6 +1,6 @@
-# COMBO
+# COMBO + NK model
 - Combinatorial Bayesian Optimizationusing the Graph Cartesian Product, Advances in neural information processing systems(NeurIPS), 2019
-
+- (HanseulJo) Application of COMBO on NK model. ( https://en.wikipedia.org/wiki/NK_model )
 
 ## 1. Set up
 ####1. Set a conda virtual environment
@@ -11,6 +11,7 @@ conda create -n COMBO python=3.7 anaconda --yes
 ####2. Clone the repository
 ```bash
 git clone https://github.com/QUVA-Lab/COMBO.git
+git clone https://github.com/HanseulJo/COMBO.git
 ```
 
 ####3. Install required packages
@@ -18,9 +19,23 @@ git clone https://github.com/QUVA-Lab/COMBO.git
 conda activate COMBO
 conda install --file requirements.txt
 ```
+If the second line above does not work, then: (installing pytorch: refer to https://pytorch.org/get-started/previous-versions/#v160 )
+```bash
+conda install -c conda-forge gputil
+conda install -c conda-forge psutil
+conda install -c conda-forge simanneal==0.4.2
+conda install -c conda-forge toposort
+conda install pytorch==1.6.0 torchvision==0.7.0 -c pytorch 
+```
+
+Note (HanseulJo): Please install matplotlib and tensorboard as well.
+```bash
+conda install matplotlib
+conda install -c conda-forge tensorboard 
+```
 
 
-## 2. Run
+## 2. Run (Original version, not HanseulJo's.)
 ####1. Consigure directories
 All necessary directories can be configured in the file **COMBO/config.py**
 
@@ -49,9 +64,13 @@ To optimize 'pestcontrol' with 300 evaluations
 ### main_NKmodel.py
 * Run this file for an experiment solving NK model optimization with COMBO.
 * Class "NKmodel" constructs an NKmodel. It initially generates a random (or you can fix an) interdependence matrix (--> self.interdependence) and a random  (or you can fix an) contribution map (--> self.contributions). You can calculate fitness value for each status (tuple of length N), whole landscape, global optimum, etc. with class methods.
-* Example run: 
+* Example run1: Random initial points.
 ```bash
-python ./main_NKmodel.py --N 6 --K 1 --A 2 --n_eval 20 --random_seed_config 1
+python ./main_NKmodel.py --N 6 --K 1 --A 2 --n_eval 20 --interdependency_seed 0 --payoff_seed 0
+```
+* Example run2: Start from the states with minimum fitness values.
+```bash
+python ./main_NKmodel.py --N 6 --K 1 --A 2 --n_eval 18 --interdependency_seed 10 --payoff_seed 15 --start_from_bottom
 ```
 
 * Additional arguments:
@@ -59,7 +78,18 @@ python ./main_NKmodel.py --N 6 --K 1 --A 2 --n_eval 20 --random_seed_config 1
 * - "--K": The number of the other loci which have effects on each locus.
 * - "--A": The number of states that each locus can have.
 * - "--model_info_path": Path to save interdependence matrix("knowledge.txt") and a table of fitness landscape with contributions("landscape.txt"). If it is None (not given), then the interdependence matrix and landscape will be printed through stdout after the BO runs.
+* - "--interdependency_seed": Random seed to fix an interdependency matrix. If not specified, it will be chosen randomly between 0 ~ 99.
+* - "--payoff_seed": Random seed to fix payoff structure (contribution map), given '--interdependency_seed'. If not specified, it will be chosen randomly between 0 ~ 99.
+* - "--init_point_seed": Random seed to fix initial points (usually, 2 points), given '--interdependency_seed'. If not specified, it will be chosen randomly between 0 ~ 99.
+* - "--start_from_bottom": If you use this option, then the initial points will be changed into (usually, two of) states with the first several minimum fitness values.
 
-### Etc.:
-* "COMBO/main.py" file has been moved outside of the folder "COMBO/". This prevents error relevant to modules.
-*
+* Removed arguments:
+* - "--lamda", "--random_seed_config"
+
+### main.py:
+* Note: "COMBO/main.py" file has been moved outside of the folder "COMBO/". This prevents error relevant to modules.
+* Some lines are modified from the original version.
+
+### run_multiple_times.py
+
+### average_graphs.py
