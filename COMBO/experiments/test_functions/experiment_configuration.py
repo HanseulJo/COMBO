@@ -100,4 +100,5 @@ def interaction_dense2sparse(horizontal_interaction, vertical_interaction):
 
 
 if __name__ == '__main__':
-    _convert_random_data_to_matfile()
+    pass
+    #_convert_random_data_to_matfile()
