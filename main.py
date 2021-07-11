@@ -27,7 +27,7 @@ from COMBO.experiments.NAS.nas_binary import NASBinary
 
 
 def run_suggest(surrogate_model, eval_inputs, eval_outputs, n_vertices, adj_mat_list, log_beta, sorted_partition,
-                acquisition_func, parallel):
+                acquisition_func, parallel, do_local_search):
     start_time = time.time()
     reference = torch.min(eval_outputs, dim=0)[0].item()
     print('(%s) Sampling' % time.strftime('%H:%M:%S', time.gmtime()))
@@ -43,7 +43,7 @@ def run_suggest(surrogate_model, eval_inputs, eval_outputs, n_vertices, adj_mat_
                                            hyper_samples, log_beta_samples, partition_samples,
                                            freq_samples, basis_samples)
     suggestion = next_evaluation(x_opt, eval_inputs, inference_samples, partition_samples, edge_mat_samples,
-                                 n_vertices, acquisition_func, reference, parallel)
+                                 n_vertices, acquisition_func, reference, parallel, do_local_search)
     processing_time = time.time() - start_time
     return suggestion, log_beta, sorted_partition, processing_time
 
@@ -68,7 +68,7 @@ def run_bo(task, store_data, parallel, bo_data_dir=None, print_last_only=True):
         suggestion, bo_data['log_beta'], bo_data['sorted_partition'], processing_time = run_suggest(
             surrogate_model=bo_data['surrogate_model'], eval_inputs=eval_inputs, eval_outputs=eval_outputs,
             n_vertices=bo_data['n_vertices'], adj_mat_list=bo_data['adj_mat_list'], log_beta=bo_data['log_beta'], sorted_partition=bo_data['sorted_partition'],
-            acquisition_func=bo_data['acquisition_func'], parallel=parallel)
+            acquisition_func=bo_data['acquisition_func'], parallel=parallel, do_local_search=bo_data['local_search'])
 
         next_input, pred_mean, pred_std, pred_var = suggestion
         eval_inputs = torch.cat([eval_inputs, next_input.view(1, -1)], 0)
@@ -180,7 +180,8 @@ def COMBO(objective=None, n_eval=200, dir_name=None, parallel=False, store_data=
                    'n_vertices': n_vertices, 'adj_mat_list': adj_mat_list, 'log_beta': log_beta,
                    'sorted_partition': sorted_partition, 'time_list': time_list, 'elapse_list': elapse_list,
                    'pred_mean_list': pred_mean_list, 'pred_std_list': pred_std_list, 'pred_var_list': pred_var_list,
-                   'acquisition_func': acquisition_func, 'objective': objective}
+                   'acquisition_func': acquisition_func, 'objective': objective,
+                   'local_search': kwargs['local_search']}
         torch.save(bo_data, os.path.join(exp_dirname, 'bo_data.pt'))
     
     bo_data_dir = os.path.join(experiment_directory(), exp_dirname)

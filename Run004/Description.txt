@@ -1,0 +1,4 @@
+N=15, K=1
+
+Random evaluation과의 비교도 포함
+Start_from_bottom 켬

@@ -1,0 +1,5 @@
+3개의 IM
+ㄴ 10개의 Ctrbs
+
+Random evaluation과의 비교도 포함
+Start_from_bottom option 켬

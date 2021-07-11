@@ -259,6 +259,26 @@ class NK_COMBO(object):
         evaluation = self.nkmodel.fitness(tuple(x), negative=True)  # To solve minimization problem, "negative=True."
         return torch.Tensor([evaluation])  # 1 by 1 Tensor
 
+def random_wide_search(states, inputs, landscape, args):
+    random_input_inds = np.random.choice(np.arange(len(states)), size=args.n_eval-INITIAL_POINTS_N, replace=False)
+    random_inputs = inputs[:INITIAL_POINTS_N] + [states[i] for i in random_input_inds]
+    print("random_inputs:\n", random_inputs)
+    random_outputs = [landscape[state] for state in random_inputs]
+    random_cummax, _ = torch.cummax(torch.Tensor(random_outputs), dim=0)
+    return random_cummax
+
+def random_local_search(states, inputs, landscape, args):
+    random_input_loci = np.random.choice(np.arange(args.N), size=args.n_eval - INITIAL_POINTS_N)
+    curr_state = list(inputs[np.argmin([landscape[inputs[j]] for j in range(INITIAL_POINTS_N)]).item()])
+    random_inputs = inputs[:INITIAL_POINTS_N]  # Use the same Initial Points
+    for locus in random_input_loci:
+        k = curr_state[locus]
+        curr_state[locus] = 1-k
+        random_inputs.append(tuple(curr_state))
+    print("random_inputs:\n", random_inputs)
+    random_outputs = [landscape[state] for state in random_inputs]
+    random_cummax, _ = torch.cummax(torch.Tensor(random_outputs), dim=0)
+    return random_cummax
 
 if __name__ == '__main__':
     parser_ = argparse.ArgumentParser(
@@ -272,15 +292,16 @@ if __name__ == '__main__':
     parser_.add_argument('--parallel', dest='parallel', action='store_true', default=False)
     parser_.add_argument('--device', dest='device', type=int, default=None)
     parser_.add_argument('--task', dest='task', type=str, default='both')
-    parser_.add_argument('--game_num', dest='game_num', type=int, default=-1)
+    parser_.add_argument('--game_num', dest='game_num', type=int, default=None)
     parser_.add_argument('--interdependency_seed', dest='interdependency_seed', type=int, default=None)
     parser_.add_argument('--payoff_seed', dest='payoff_seed', type=int, default=None)
     parser_.add_argument('--init_point_seed', dest='init_point_seed', type=int, default=None)
     parser_.add_argument('--start_from_bottom', dest='start_from_bottom', action='store_true', default=False)
+    parser_.add_argument('--local_search', dest='local_search', action='store_true', default=False)
 
     args_ = parser_.parse_args()
 
-    if args_.game_num != -1:
+    if args_.game_num is not None:
         USE_DATA = True
         GAME_NUM = args_.game_num
         NKMODEL_DATAPATH = f"../Exp input/Game{GAME_NUM} landscape.txt"
@@ -345,6 +366,7 @@ if __name__ == '__main__':
         if RECORD:
             writer = SummaryWriter(log_dir=log_dir)
             inputs = [tuple(x) for x in inputs.int().tolist()]
+            print("COMBO_inputs:\n", inputs)
             outputs = -outputs.view(-1) # positive valued.
             states = sorted(landscape.keys())
             states_strs = ["".join([str(y) for y in x]) for x in states]
@@ -352,11 +374,10 @@ if __name__ == '__main__':
             assert len(inputs) == len(outputs) == args_.n_eval
 
             # Random Search (to Compare with Evaluation Plot)
-            random_input_inds = np.random.choice(np.arange(len(states)), size=args_.n_eval, replace=False)
-            random_outputs = [landscape[states[i]] for i in random_input_inds]
-            # modify initial states:
-            random_outputs = [landscape[init_state] for init_state in inputs[:INITIAL_POINTS_N]] + random_outputs[INITIAL_POINTS_N:]
-            random_cummax, _ = torch.cummax(torch.Tensor(random_outputs), dim=0)
+            if kwag_['local_search']:
+                random_cummax = random_local_search(states, inputs, landscape, args_)
+            else:
+                random_cummax = random_wide_search(states, inputs, landscape, args_)  # or, random_local_search
             bo_data['random_cummax'] = random_cummax
             
             # Plot 1: Landscpe and Searching order

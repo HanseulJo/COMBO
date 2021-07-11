@@ -23,7 +23,8 @@ N_SA_RUN = 10
 
 
 def next_evaluation(x_opt, input_data, inference_samples, partition_samples, edge_mat_samples, n_vertices,
-                    acquisition_func=expected_improvement, reference=None, parallel=None):
+                    acquisition_func=expected_improvement, reference=None, parallel=None,
+                    do_local_search=False):
     """
     In case of '[Errno 24] Too many open files', check 'nofile' limit by typing 'ulimit -n' in a terminal
     if it is too small then add lines to '/etc/security/limits.conf'
@@ -50,7 +51,7 @@ def next_evaluation(x_opt, input_data, inference_samples, partition_samples, edg
           % (time.strftime('%H:%M:%S', time.gmtime(start_time))))
 
     x_inits, acq_inits = optim_inits(x_opt, inference_samples, partition_samples, edge_mat_samples, n_vertices,
-                                     acquisition_func, reference)
+                                     acquisition_func, reference, do_local_search)
     n_inits = x_inits.size(0)
     assert n_inits % 2 == 0
 

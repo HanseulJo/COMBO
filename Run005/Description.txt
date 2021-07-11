@@ -1,0 +1,6 @@
+10개의 interdependency matrices
+ㄴ 10개의 contribution maps
+
+COMBO의 매 acquisition optimization 때마다 인접한 state (single-locus-flipped) 중에서만 봄. (local_search)
+Random Walk 역시 매 스텝마다 1 locus만 뒤집히도록 함.
+
