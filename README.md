@@ -19,7 +19,7 @@ git clone https://github.com/HanseulJo/COMBO.git
 conda activate COMBO
 conda install --file requirements.txt
 ```
-If the second line above does not work, then: (installing pytorch: refer to https://pytorch.org/get-started/previous-versions/#v160 )
+If the second line above does not work, then run:  (installing pytorch: refer to https://pytorch.org/get-started/previous-versions/#v160 )
 ```bash
 conda install -c conda-forge gputil
 conda install -c conda-forge psutil
@@ -27,8 +27,7 @@ conda install -c conda-forge simanneal==0.4.2
 conda install -c conda-forge toposort
 conda install pytorch==1.6.0 torchvision==0.7.0 -c pytorch 
 ```
-
-Note (HanseulJo): Please install matplotlib and tensorboard as well.
+Note (HanseulJo): Please install matplotlib and tensorboard manually.
 ```bash
 conda install matplotlib
 conda install -c conda-forge tensorboard 
@@ -72,6 +71,10 @@ python ./main_NKmodel.py --N 6 --K 1 --A 2 --n_eval 20 --interdependency_seed 0 
 ```bash
 python ./main_NKmodel.py --N 6 --K 1 --A 2 --n_eval 18 --interdependency_seed 10 --payoff_seed 15 --start_from_bottom
 ```
+* Example run3: Every acquisition optimization step do a flip of a locus from the previous state. (in COMBO, and Random Walk)
+```bash
+python ./main_NKmodel.py --N 6 --K 1 --A 2 --n_eval 18 --interdependency_seed 70 --payoff_seed 68 --local_search
+```
 
 * Additional arguments:
 * - "--N": The number of loci
@@ -82,6 +85,7 @@ python ./main_NKmodel.py --N 6 --K 1 --A 2 --n_eval 18 --interdependency_seed 10
 * - "--payoff_seed": Random seed to fix payoff structure (contribution map), given '--interdependency_seed'. If not specified, it will be chosen randomly between 0 ~ 99.
 * - "--init_point_seed": Random seed to fix initial points (usually, 2 points), given '--interdependency_seed'. If not specified, it will be chosen randomly between 0 ~ 99.
 * - "--start_from_bottom": If you use this option, then the initial points will be changed into (usually, two of) states with the first several minimum fitness values.
+* - "--local_search": If you use this option, then every searching step (more exactly, acquisition optimizattion) will do a flip on single locus of previous state. (Since we choose 2 initial points, the first locus-flip is done for an initial point with less fitness value (closer-to-optimum).)
 
 * Removed arguments:
 * - "--lamda", "--random_seed_config"
