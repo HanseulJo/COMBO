@@ -53,7 +53,7 @@ def next_evaluation(x_opt, input_data, inference_samples, partition_samples, edg
     x_inits, acq_inits = optim_inits(x_opt, inference_samples, partition_samples, edge_mat_samples, n_vertices,
                                      acquisition_func, reference, do_local_search)
     n_inits = x_inits.size(0)
-    assert n_inits % 2 == 0
+    #assert n_inits % 2 == 0
 
     end_time = time.time()
     elapsed_time = end_time - start_time

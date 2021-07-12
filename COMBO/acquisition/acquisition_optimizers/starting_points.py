@@ -6,11 +6,10 @@ from COMBO.acquisition.acquisition_optimizers.graph_utils import neighbors
 from COMBO.acquisition.acquisition_marginalization import acquisition_expectation
 from COMBO.acquisition.acquisition_functions import expected_improvement
 
-
-N_RANDOM_VERTICES = 64      # If we use (N=6,K=1) model, Huge value of N_RANDOM_VERTICEES is redundant.
-N_GREEDY_ASCENT_INIT = 20  # Why this should be 20?
-N_SPRAY = 10
 ARGS_N = 6
+N_RANDOM_VERTICES = min(2**ARGS_N, 20000)      # If we use (N=6,K=1) model, Huge value of N_RANDOM_VERTICEES is redundant.
+N_GREEDY_ASCENT_INIT = 20
+N_SPRAY = 20
 
 
 def optim_inits(x_opt, inference_samples, partition_samples, edge_mat_samples, n_vertices,

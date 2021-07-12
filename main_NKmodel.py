@@ -262,7 +262,7 @@ class NK_COMBO(object):
 def random_wide_search(states, inputs, landscape, args):
     random_input_inds = np.random.choice(np.arange(len(states)), size=args.n_eval-INITIAL_POINTS_N, replace=False)
     random_inputs = inputs[:INITIAL_POINTS_N] + [states[i] for i in random_input_inds]
-    print("random_inputs:\n", random_inputs)
+    #print("random_inputs:\n", random_inputs)
     random_outputs = [landscape[state] for state in random_inputs]
     random_cummax, _ = torch.cummax(torch.Tensor(random_outputs), dim=0)
     return random_cummax
@@ -275,7 +275,7 @@ def random_local_search(states, inputs, landscape, args):
         k = curr_state[locus]
         curr_state[locus] = 1-k
         random_inputs.append(tuple(curr_state))
-    print("random_inputs:\n", random_inputs)
+    #print("random_inputs:\n", random_inputs)
     random_outputs = [landscape[state] for state in random_inputs]
     random_cummax, _ = torch.cummax(torch.Tensor(random_outputs), dim=0)
     return random_cummax
@@ -331,6 +331,12 @@ if __name__ == '__main__':
         ctrbs_seed_ = ctrbs_seed_list_[seed_info[1]]
         init_seed_ = init_seed_list_[seed_info[2]]
 
+        manual_seed = True
+        if manual_seed:
+            im_seed_ = 371
+            ctrbs_seed_ = 2174
+            init_seed_ = 1092
+
         im, ctrbs = None, None
         if USE_DATA:
             if NKMODEL_IM_PATH is not None:
@@ -366,7 +372,7 @@ if __name__ == '__main__':
         if RECORD:
             writer = SummaryWriter(log_dir=log_dir)
             inputs = [tuple(x) for x in inputs.int().tolist()]
-            print("COMBO_inputs:\n", inputs)
+            #print("COMBO_inputs:\n", inputs)
             outputs = -outputs.view(-1) # positive valued.
             states = sorted(landscape.keys())
             states_strs = ["".join([str(y) for y in x]) for x in states]
@@ -428,4 +434,4 @@ if __name__ == '__main__':
     print(f"True Optimum: {-optimum_naive}")
 
 
-# graph kernel
+# graph kernel?
