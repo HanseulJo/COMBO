@@ -1,0 +1,8 @@
+10개의 interdependency matrices
+ㄴ 10개의 contribution maps
+
+일반적인 COMBO와 configuration (State) 단위의 Random search.
+(!= local searches)
+
+start_from_bottom = False
+local_search = False
