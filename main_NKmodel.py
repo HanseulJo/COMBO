@@ -206,6 +206,7 @@ class NKmodel(object):
                     fit = str(round(fit, 4))
                     state = "".join([str(x) for x in state])
                     print("\t".join([state] + ctrbs + [fit]), file=f2)
+        order = min(10, 2**self.N)
         optlist = self.get_optimum_and_more(order=10)
         for i in range(10):
             opt, optstates = optlist[i]["fitness"], optlist[i]["states"]
