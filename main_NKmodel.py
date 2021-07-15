@@ -207,8 +207,8 @@ class NKmodel(object):
                     state = "".join([str(x) for x in state])
                     print("\t".join([state] + ctrbs + [fit]), file=f2)
         order = min(10, 2**self.N)
-        optlist = self.get_optimum_and_more(order=10)
-        for i in range(10):
+        optlist = self.get_optimum_and_more(order)
+        for i in range(order):
             opt, optstates = optlist[i]["fitness"], optlist[i]["states"]
             print(f"{i+1}-th optimum: {opt} {optstates}")
     
