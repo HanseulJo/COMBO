@@ -7,7 +7,7 @@ from COMBO.acquisition.acquisition_marginalization import acquisition_expectatio
 from COMBO.acquisition.acquisition_functions import expected_improvement
 
 ARGS_N = 6
-N_RANDOM_VERTICES = min(2**ARGS_N, 20000)      # If we use (N=6,K=1) model, Huge value of N_RANDOM_VERTICEES is redundant.
+N_RANDOM_VERTICES = min(2**ARGS_N, 20000)      # If we use (N=6,K=1) model, Huge value of N_RANDOM_VERTICES is redundant.
 N_GREEDY_ASCENT_INIT = 20
 N_SPRAY = 20
 

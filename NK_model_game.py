@@ -104,9 +104,7 @@ def game(N=6, K=1, chance=18, can_restart=True):
             new_fitness = previous["fitness"] * N
             improve_ctrbs = ['.' for _ in range(N)]
             for j in np.nonzero(depend_on_flip)[0]:
-                dependency = model.interdependence[j]
-                label = tuple(new_state[dependency])
-                ctrb = model.contributions[j][label]
+                ctrb = model.calculate_ith_contribution(new_state, j)
                 prev_ctrb = previous["contrib"][j]
                 new_fitness = new_fitness - prev_ctrb + ctrb
                 previous["contrib"][j] = ctrb
