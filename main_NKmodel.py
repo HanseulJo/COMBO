@@ -181,7 +181,7 @@ if __name__ == '__main__':
         ctrbs_seed_ = ctrbs_seed_list_[seed_info[1]]
         init_seed_ = init_seed_list_[seed_info[2]]
 
-        manual_seed = True
+        manual_seed = False
         if manual_seed:
             im_seed_ = 371
             ctrbs_seed_ = 2174
@@ -219,6 +219,7 @@ if __name__ == '__main__':
         model = kwag_['objective'].nkmodel
         model.print_info(path=log_dir)
         fit_opt, states_opt, landscape = model.get_global_optimum(cache=True)
+        bo_data['fit_opt'] = fit_opt
         if RECORD:
             writer = SummaryWriter(log_dir=log_dir)
             inputs = [tuple(x) for x in inputs.int().tolist()]
