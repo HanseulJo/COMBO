@@ -6,8 +6,7 @@ from COMBO.acquisition.acquisition_optimizers.graph_utils import neighbors
 from COMBO.acquisition.acquisition_marginalization import acquisition_expectation
 from COMBO.acquisition.acquisition_functions import expected_improvement
 
-ARGS_N = 6
-N_RANDOM_VERTICES = min(2**ARGS_N, 20000)      # If we use (N=6,K=1) model, Huge value of N_RANDOM_VERTICES is redundant.
+N_RANDOM_VERTICES = 20000
 N_GREEDY_ASCENT_INIT = 20
 N_SPRAY = 20
 
@@ -24,10 +23,10 @@ def optim_inits(x_opt, inference_samples, partition_samples, edge_mat_samples, n
     :param reference:
     :return:
     """
+    N_RANDOM_VERTICES = min(2**len(x_opt), 20000) # If we use (N=6,K=1) model, Huge value of N_RANDOM_VERTICES is redundant.
     if do_local_search:
-        min_nbd = neighbors(x_opt, partition_samples, edge_mat_samples, n_vertices, uniquely=False)
-        shuffled_ind = list(range(ARGS_N))
-        np.random.shuffle(shuffled_ind)
+        min_nbd = neighbors(x_opt, partition_samples, edge_mat_samples, n_vertices, uniquely=True)
+        shuffled_ind = list(range(len(x_opt)))
         x_init_candidates = min_nbd[shuffled_ind]
     else:
         rnd_nbd = torch.cat(tuple([torch.randint(low=0, high=int(n_v), size=(N_RANDOM_VERTICES, 1)) for n_v in n_vertices]), dim=1).long()

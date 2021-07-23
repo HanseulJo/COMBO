@@ -1,5 +1,0 @@
-10개의 interdependency matrices
-ㄴ 10개의 contribution maps
-
-start_from_bottom = False
-local_search = True

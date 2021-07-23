@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from main_NKmodel import *
 
 #directories = []
-DIRECTORY = '.'  # 'Experiments/Run###'
+DIRECTORY = 'Experiments/Run011*'  # 'Experiments/Run###'
 IM_SEED = ''  # ''
 
 filenames = glob.glob(os.path.join(f'{DIRECTORY}/NK_COMBO_{IM_SEED}*', 'bo_data.pt'))

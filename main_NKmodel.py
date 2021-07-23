@@ -133,7 +133,7 @@ def random_local_search(states, inputs, landscape, args):
 if __name__ == '__main__':
     parser_ = argparse.ArgumentParser(
         description='COMBO : Combinatorial Bayesian Optimization using the graph Cartesian product')
-    parser_.add_argument('--n_eval', dest='n_eval', type=int, default=1)
+    parser_.add_argument('--n_eval', dest='n_eval', type=int, default=20)
     parser_.add_argument('--N', dest='N', type=int, default=6)
     parser_.add_argument('--K', dest='K', type=int, default=1)
     parser_.add_argument('--A', dest='A', type=int, default=2)
@@ -210,7 +210,7 @@ if __name__ == '__main__':
     inputs, outputs = bo_data['eval_inputs'], bo_data['eval_outputs']
 
     local_optima, _ = torch.cummin(outputs.view(-1), dim=0)
-    assert len(local_optima) == args_.n_eval
+    assert len(local_optima) == args_.n_eval, f"{len(local_optima)} != {args_.n_eval}"
     
     if objective_ == 'nkmodel':
         bo_data['local_optima'] = local_optima  # save it as a negative-valued tensor.
@@ -223,7 +223,7 @@ if __name__ == '__main__':
         if RECORD:
             writer = SummaryWriter(log_dir=log_dir)
             inputs = [tuple(x) for x in inputs.int().tolist()]
-            #print("COMBO_inputs:\n", inputs)
+            print("COMBO_inputs:\n", inputs)
             outputs = -outputs.view(-1) # positive valued.
             states = sorted(landscape.keys())
             states_strs = ["".join([str(y) for y in x]) for x in states]

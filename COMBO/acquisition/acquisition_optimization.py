@@ -42,6 +42,8 @@ def next_evaluation(x_opt, input_data, inference_samples, partition_samples, edg
     :param parallel:
     :return:
     """
+    if do_local_search: # Prevent BFLS (1)
+        MAX_N_ASCENT = 0
     id_digit = np.ceil(np.log(np.prod(n_vertices)) / np.log(10))
     id_unit = torch.from_numpy(np.cumprod(np.concatenate([np.ones(1), n_vertices[:-1]])).astype(np.int))
     fmt_str = '\t %5.2f (id:%' + str(id_digit) + 'd) ==> %5.2f (id:%' + str(id_digit) + 'd)'
@@ -50,7 +52,7 @@ def next_evaluation(x_opt, input_data, inference_samples, partition_samples, edg
     print('(%s) Acquisition function optimization initial points selection began'
           % (time.strftime('%H:%M:%S', time.gmtime(start_time))))
 
-    x_inits, acq_inits = optim_inits(x_opt, inference_samples, partition_samples, edge_mat_samples, n_vertices,
+    x_inits, acq_inits = optim_inits(x_opt if not do_local_search else input_data[-1], inference_samples, partition_samples, edge_mat_samples, n_vertices,
                                      acquisition_func, reference, do_local_search)
     n_inits = x_inits.size(0)
     #assert n_inits % 2 == 0
@@ -144,7 +146,9 @@ def next_evaluation(x_opt, input_data, inference_samples, partition_samples, edg
         if not torch.all(opt_vrt[ind] == input_data, dim=1).any():
             suggestion = opt_vrt[ind]
             break
-    if suggestion is None:
+    if do_local_search and suggestion is None:  # Prevent BFLS (2)
+        suggestion = opt_vrt[acq_sort_inds[0]]
+    if suggestion is None:  #BFLS
         for i in range(len(opt_vrt)):
             ind = acq_sort_inds[i]
             nbds = neighbors(opt_vrt[ind], partition_samples, edge_mat_samples, n_vertices, uniquely=True)
